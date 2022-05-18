@@ -3,10 +3,8 @@
 
 # Modify data.dir to indicate the location of the GWAStutorial files
 # Intermediate data files will also be stored in this same location unless you set out.dir
-
-# Intermediate data files will also be stored in this same location unless you set out.dir
-data.dir <- '/scratch/spectre/a/asna4/GWAS'
-out.dir <- '/scratch/spectre/a/asna4/GWAS/out'
+data.dir = paste(getwd(), 'GWAS_Tutorial', sep = "/")
+out.dir <- paste(getwd(), 'GWAS_Tutorial/out', sep = "/")
 
 gwas.fn <- lapply( c (bed='bed', bim='bim', fam='fam' ,gds='gds'), function (n) sprintf ("%s/GWAStutorial.%s", data.dir, n))
 clinical.fn <- sprintf("%s/GWAStutorial_clinical.csv", data.dir)
@@ -21,3 +19,4 @@ CETP.fname <- sprintf("%s/CETP_GWASout.csv" , out.dir)
 
 #saving configs
 working.data.fname <- function(num) { sprintf("%s/working.%s.Rdata", out.dir, num) }
+

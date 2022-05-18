@@ -10,23 +10,37 @@ In the steps to follow we begin by demonstrating a method for downloading necess
 ```r
 # Run this once interactively to download and install BioConductor packages and other packages.
 
-source ("http://bioconductor.org/biocLite.R ")
-list.of.packages <- c("snpStats", "SNPRelate","rtracklayer", "biomaRt")
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) biocLite(new.packages)
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
 
+bio.packages = c("snpStats", "SNPRelate","rtracklayer", "biomaRt")
+BiocManager::install(bio.packages)
 
-list.of.packages <- c('plyr', 'LDheatmap', 'doParallel', 'ggplot2', 'coin' ,'igraph', 'devtools', 'downloader')
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) install.packages(new.packages)
+other.packages = c("plyr", "LDheatmap", "doParallel", "ggplot2", "coin", "igraph", "devtools", "downloader")
+install.packages(other.packages)
 
 # GenABEL has moved to CRAN archive. The below command for local installation from CRAN archive.
 install.packages("https://cran.r-project.org/src/contrib/Archive/GenABEL/GenABEL_1.7-6.tar.gz", 
 type = "source", repos = NULL)
 
+install.packages("https://github.com/merns/postgwas/releases/download/1.11-2/postgwas_1.11-2.zip", repos=NULL)
 
-library(devtools)
-install_url("http://cran.r-project.org/src/contrib/Archive/postgwas/postgwas_1.11.tar.gz")
+```
+
+## Loading packages
+
+```r
+# Loading packages ...
+lapply(bio.packages, require, character.only = TRUE)
+lapply(other.packages, require, character.only = TRUE)
+library(GenABEL)
+library(postgwas)
+
+# Moodle for GenABEL errors
+source("R/ztransform.R")
+source("R/rntransform.R")
+source("R/estlambda.R")
+source("R/GWAA.R")
 
 ```
 
@@ -36,7 +50,7 @@ install_url("http://cran.r-project.org/src/contrib/Archive/postgwas/postgwas_1.1
 Customize and Run [globals.R](R/globals.R)
 
 ```r
-source("globals.R")
+source("R/globals.R")
 
 # Downloading support files
 # Download and unzip data needed for this tutorial
