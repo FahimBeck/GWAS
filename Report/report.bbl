@@ -1,0 +1,23 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[McPherson and Tybjaerg-Hansen(2016)]{heredity}
+R.~McPherson and A.~Tybjaerg-Hansen.
+\newblock Genetics of coronary artery disease.
+\newblock \emph{Circulation Research}, 118\penalty0 (4):\penalty0 564--578,
+  February 2016.
+\newblock \doi{10.1161/CIRCRESAHA.115.306566}.
+
+\bibitem[Reed et~al.(2015)Reed, Nunez, Kulp, Qian, Reilly, and
+  Foulkes]{tutorial}
+E.~Reed, S.~Nunez, D.~Kulp, J.~Qian, M.~Reilly, and A.~Foulkes.
+\newblock A guide to genome-wide association analysis and post-analytic
+  interrogation.
+\newblock \emph{Statistics in medicine}, 34, September 2015.
+\newblock \doi{10.1002/sim.6605}.
+
+\end{thebibliography}

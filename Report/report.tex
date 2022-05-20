@@ -1,0 +1,125 @@
+\documentclass[a4paper, 12pt]{article}
+
+%--------------------------------------------------------------------------
+%	PACKAGES
+%--------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm, amsfonts}
+\usepackage{mathtools}
+\usepackage{nccmath}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{numprint}
+\usepackage{nicefrac}
+\usepackage{dsfont}
+\usepackage{gensymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{subcaption}
+\usepackage{titling} % Customizing the title section
+\usepackage{blindtext}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage{hyperref} % For hyperlinks in the PDF
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{perpage}
+\usepackage{afterpage}
+\usepackage[round]{natbib}
+\usepackage{usebib}
+\usepackage[nottoc, numbib]{tocbibind} 
+\usepackage[titletoc, title]{appendix}
+\usepackage{graphicx}
+\usepackage{float}
+%--------------------------------------------------------------------------
+%	TITLE PAGE
+%--------------------------------------------------------------------------
+\pretitle{\vspace{-3\baselineskip}\begin{center}\Huge\bfseries} % Article title formatting
+\posttitle{\end{center}} % Article title closing formatting
+\title{Genome-wide association study on coronary artery disease \vspace{0.3cm}} % Article title
+\author{\smallskip
+\large \textsc{Fahim Beck}}
+\date{\vspace{-1.3cm}}
+%--------------------------------------------------------------------------
+%	OTHER SETTINGS
+%--------------------------------------------------------------------------
+\tolerance=10000 %Badbox errors
+\hbadness=10000 %Badbox errors
+\hfuzz=\maxdimen %ici nécessaire (Badbox errors)
+
+\parindent=0cm %indentation réglé à 0cm
+\setlength{\headheight}{15pt}
+\setlength{\columnsep}{0.14cm}
+\setitemize{itemsep=-1pt}
+\MakePerPage{footnote}
+\addto\captionsenglish{\renewcommand\contentsname{Table of Contents}}
+\addto\captionsenglish{\renewcommand\bibname{References}}
+
+% Cite title
+\bibinput{references}
+\newcommand{\citetitle}[1]{\hyperlink{cite.#1}{(\usebibentry{#1}{title}, \usebibentry{#1}{year})}}
+
+% Inline code style
+\definecolor{codegray}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{\frenchspacing #1}}}
+%--------------------------------------------------------------------------
+%	FANCY SETTINGS
+%--------------------------------------------------------------------------
+\fancypagestyle{plain}{
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyhf{}
+  \fancyfoot[L]{\raisebox{-0.4\baselineskip}{\includegraphics[width=0.15\textwidth]{images/EPFL.png}}}
+  \fancyfoot[R]{\thepage /\pageref{LastPage}}
+}
+
+\rhead{Fahim Beck}
+\lhead{}
+\lfoot{\raisebox{-0.4\baselineskip}{\includegraphics[width=0.15\textwidth]{images/EPFL.png}}}
+\cfoot{}
+\rfoot{\thepage /\pageref{LastPage}}
+\pagestyle{fancy}
+%--------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction and background}
+
+Coronary artery disease (CAD) is one of the major causes of death worldwide. It causes a reduction in blood flow in the arteries of the heart through plaque formation (arteriosclerosis). There are many risk factors (smoking, alcohol, high blood cholesterol, obesity, etc). However, between 40\% and 60\% of this disease seems to be hereditary \citep{heredity}. Hence the interest in carrying out a genome-wide association study for this disease.  
+
+\subsection*{Research questions and approaches}
+
+The aim of this study is to identify associations among SNPs and the presence of CAD. For a GWAS, the four main steps are: (i) data pre-processing; (ii) new data generation; (iii) statistical analysis; and (iv) post-analytic interrogation. 
+
+\subsection*{Dataset}
+
+The data are from a GWA study of CAD (PennCATH) of the University of Pennsylvania Medical Center. It includes 3850 individuals enrolled between July 1998 and March 2003. Here, we consider anonymised data that includes 1401 individuals with genotype information over 861,473 SNPs. The clinical data gives information about the age, sex, HDL and LDL cholesterol, triglycerides and CAD status. 
+
+\section{GWA analysis}
+
+\subsection{PCA}
+
+\subsection{Pre-processing / QC steps}
+
+\subsection{Association / post-association analysis}
+
+
+\section{Conclusion}
+
+
+\nocite{*}
+\setcitestyle{numbers}
+\bibliographystyle{abbrvnat}
+\bibliography{references}
+
+%\begin{appendices}
+%	\section{Something}
+%\end{appendices}
+
+\end{document}
