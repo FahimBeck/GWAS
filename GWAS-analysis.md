@@ -9,15 +9,15 @@ Due to the large number of models that require fitting, the GWA analysis can be 
 First we create a data frame of phenotype features that is the concatenation of clinical features and the first ten principal components. The HDL feature is normalized using a rank-based inverse normal transform. We then remove variables that we are not including in the analysis, i.e. HDL(non-normalized), LDL, TG, and CAD. Finally, we remove samples with missing normalized HDL data.
 
 ```r
+
 ## restore the data generated from steps 1-6
-source("globals.R")
+source("R/globals.R")
 
 # load data created in previous snippets
 load(working.data.fname(6))
 
 ## Require GenABEL and GWAA function
-library(GenABEL)
-source("https://github.com/AAlhendi1707/GWAS/blob/master/R/GWAA.R?raw=true")
+source("R/GWAA.R")
 
 # Merge clincal data and principal components to create phenotype table
 phenoSub <- merge(clinical,pcs)      # data.frame => [ FamID CAD sex age hdl pc1 pc2 ... pc10 ]
@@ -29,10 +29,12 @@ phenoSub$phenotype <- rntransform(phenoSub$hdl, family="gaussian")
 par(mfrow=c(1,2))
 hist(phenoSub$hdl, main="Histogram of HDL", xlab="HDL")
 hist(phenoSub$phenotype, main="Histogram of Tranformed HDL", xlab="Transformed HDL")
+
 ```
 <img src="imgs/HDL-transformation.png">
 
 ```r
+
 # Remove unnecessary columns from table
 phenoSub$hdl <- NULL
 phenoSub$ldl <- NULL
@@ -47,6 +49,7 @@ phenoSub<-phenoSub[!is.na(phenoSub$phenotype),]
 # 1309 subjects included with phenotype data
 
 print(head(phenoSub))
+
 ```
 ```
 ##      id sex age          pc1          pc2          pc3           pc4
@@ -75,12 +78,14 @@ print(head(phenoSub))
 Using this phenotype data, we perform model fitting on each of the typed SNPs in the `genotype` object and write the results to a *.txt* file.
 
 ```r
+
 # Run GWAS analysis
 # Note: This function writes a file, but does not produce an R object
 start <- Sys.time()
 GWAA(genodata=genotype, phenodata=phenoSub, filename=gwaa.fname)
 end <- Sys.time()
 print(end-start)
+
 ```
 ```
 ## Loading required package: doParallel

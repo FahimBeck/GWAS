@@ -8,6 +8,7 @@ In the steps to follow we begin by demonstrating a method for downloading necess
 ## Installing necessary packages
 
 ```r
+
 # Run this once interactively to download and install BioConductor packages and other packages.
 
 if (!require("BiocManager", quietly = TRUE))
@@ -19,10 +20,6 @@ BiocManager::install(bio.packages)
 other.packages = c("plyr", "LDheatmap", "doParallel", "ggplot2", "coin", "igraph", "devtools", "downloader")
 install.packages(other.packages)
 
-# GenABEL has moved to CRAN archive. The below command for local installation from CRAN archive.
-install.packages("https://cran.r-project.org/src/contrib/Archive/GenABEL/GenABEL_1.7-6.tar.gz", 
-type = "source", repos = NULL)
-
 install.packages("https://github.com/merns/postgwas/releases/download/1.11-2/postgwas_1.11-2.zip", repos=NULL)
 
 ```
@@ -30,10 +27,10 @@ install.packages("https://github.com/merns/postgwas/releases/download/1.11-2/pos
 ## Loading packages
 
 ```r
+
 # Loading packages ...
 lapply(bio.packages, require, character.only = TRUE)
 lapply(other.packages, require, character.only = TRUE)
-library(GenABEL)
 library(postgwas)
 
 # Moodle for GenABEL errors
@@ -50,15 +47,8 @@ source("R/GWAA.R")
 Customize and Run [globals.R](R/globals.R)
 
 ```r
+
 source("R/globals.R")
-
-# Downloading support files
-# Download and unzip data needed for this tutorial
-
-library(downloader)
-
-download(urlSupport, zipSupport.fn)
-unzip(zipSupport.fn, exdir = data.dir)
 
 ```
 

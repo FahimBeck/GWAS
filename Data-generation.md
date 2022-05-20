@@ -5,14 +5,16 @@
 Now that we have performed SNP and sample level quality control on our genotype data, we will calculate principal components to be included as covariates in the GWA models. These serve to adjust for any remaining substructure that may confound SNP level association. As with Ancestry filtering we will calculate PCs using the `snpgdsPCA` function from SNPRelate, after performing LD pruning once again on the filtered genotype data set. In this example, we will include the first 10 principal components in GWA models.
 
 ```r
+
+# genofile <- openfn.gds(gwas.fn$gds, readonly = FALSE)
+
 #Set LD threshold to 0.2
 ld.thresh <- 0.2
 
 set.seed(1000)
 geno.sample.ids <- rownames(genotype)
-snpSUB <- snpgdsLDpruning(genofile, ld.threshold = ld.thresh,
-                          sample.id = geno.sample.ids, # Only analyze the filtered samples
-                          snp.id = colnames(genotype)) # Only analyze the filtered SNPs
+snpSUB <- snpgdsLDpruning(genofile, ld.threshold = ld.thresh, sample.id = geno.sample.ids, snp.id = colnames(genotype))
+                          
 ```
 ```
 ## SNP pruning based on LD:
@@ -47,10 +49,12 @@ snpSUB <- snpgdsLDpruning(genofile, ld.threshold = ld.thresh,
 ## 72578 SNPs are selected in total.
 ```
 ```r
+
 snpset.pca <- unlist(snpSUB, use.names=FALSE)
 cat(length(snpset.pca),"\n")  #72578 SNPs will be used in PCA analysis
 
 pca <- snpgdsPCA(genofile, sample.id = geno.sample.ids,  snp.id = snpset.pca, num.thread=1)
+
 ```
 ```
 Principal Component Analysis (PCA) on genotypes:
@@ -66,6 +70,7 @@ Thu Apr 11 20:22:40 2019    Begin (eigenvalues and eigenvectors)
 Thu Apr 11 20:22:41 2019    Done.
 ```
 ```r
+
 # Find and record first 10 principal components
 # pcs will be a N:10 matrix.  Each column is a principal component.
 pcs <- data.frame(FamID = pca$sample.id, pca$eigenvect[,1 : 10],
@@ -73,6 +78,7 @@ pcs <- data.frame(FamID = pca$sample.id, pca$eigenvect[,1 : 10],
 colnames(pcs)[2:11]<-paste("pc", 1:10, sep = "")
 
 print(head(pcs))
+
 ```
 ```
 ##   FamID          pc1          pc2           pc3           pc4
@@ -98,8 +104,10 @@ print(head(pcs))
 ## 6  0.013143889
 ```
 ```r
+
 # Close GDS file
 closefn.gds(genofile)
+
 ```
 ## Genotype imputation - Step 6
 In addition to the genotyped SNPs from our study, it is useful to extend the analysis to other known SNPs, that were not typed or were removed by SNP level filtering. In this example, we impute SNPs on chromosome 16.
@@ -113,6 +121,7 @@ We derive imputation “rules” for the additional SNPs that were not typed in 
 In the last step we remove un-typed SNPs in which we fail to derive imputation “rules”. We also filter out SNPs that have low estimated minor allele frequency, and low imputation accuracy. The latter is based on the R2 value of the model estimated by the `snp.imputation` function.
 
 ```r
+
 # Read in 1000g data for given chromosome 16
 thougeno <- read.pedfile(onethou.fn$ped, snps = onethou.fn$info, which=1)
 
@@ -123,6 +132,7 @@ genoMatrix <- thougeno$genotypes
 support <- thougeno$map
 colnames(support)<-c("SNP", "position", "A1", "A2")
 head(support)
+
 ```
 ```
 ##           SNP position A1 A2
@@ -134,6 +144,7 @@ head(support)
 ## 6   rs4021615    61349  1  3
 ```
 ```r
+
 # Imputation of non-typed 1000g SNPs
 presSnps <- colnames(genotype)
 
@@ -148,6 +159,7 @@ is.present <- colnames(genoMatrix) %in% targetSnps
 
 missing <- genoMatrix[,!is.present]
 print(missing)             # Almost 400,000 SNPs
+
 ```
 ```
 ## A SnpMatrix with  99 rows and  377819 columns
@@ -155,8 +167,10 @@ print(missing)             # Almost 400,000 SNPs
 ## Col names:  rs140769322 ... rs111706106
 ```
 ```r
+
 present <- genoMatrix[,is.present]
 print(present)                  # Our typed SNPs
+
 ```
 ```
 ## A SnpMatrix with  99 rows and  20632 columns
@@ -164,28 +178,33 @@ print(present)                  # Our typed SNPs
 ## Col names:  rs41340949 ... rs4785775
 ```
 ```r
+
 # Obtain positions of SNPs to be used for imputation rules
 pos.pres <- support$position[is.present]
 pos.miss <- support$position[!is.present]
 
 # Calculate and store imputation rules using snp.imputation()
 rules <- snp.imputation(present, missing, pos.pres, pos.miss)
+
 ```
 ```
 ## SNPs tagged by a single SNP: 82119
 ## SNPs tagged by multiple tag haplotypes (saturated model): 115769
 ```
 ```r
+
 # Remove failed imputations
 rules <- rules[can.impute(rules)]
 cat("Imputation rules for", length(rules), "SNPs were estimated\n")  
 # Imputation rules for 197888 SNPs were estimated
+
 ```
 ```
 ## Imputation rules for 197888 SNPs were estimated
 ```
 
 ```r
+
 # Quality control for imputation certainty and MAF
 # Set thresholds
 r2threshold <- 0.7
@@ -196,17 +215,22 @@ rules <- rules[imputation.r2(rules) >= r2threshold]
 
 cat(length(rules),"imputation rules remain after imputations with low certainty were removed\n")  
 # 162565 imputation rules remain after imputations with low certainty were removed
+
 ```
 ```r
+
 rules <- rules[imputation.maf(rules) >= minor]
 cat(length(rules),"imputation rules remain after MAF filtering\n")  
 # 162565 imputation rules remain after MAF filtering
+
 ```
 ```r
+
 # Obtain posterior expectation of genotypes of imputed snps
 target <- genotype[,targetSnps]
 imputed <- impute.snps(rules, target, as.numeric=FALSE)
 print(imputed)  # 162565 SNPs were imputed
+
 ```
 ```
 ## A SnpMatrix with  1401 rows and  162565 columns
@@ -214,6 +238,7 @@ print(imputed)  # 162565 SNPs were imputed
 ## Col names:  rs560777354;rs80001234 ... rs62053708
 ```
 ```r
+
 # Free some memory in your R session
 rm(genoMatrix)
 rm(missing)
