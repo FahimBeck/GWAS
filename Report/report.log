@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.9)  20 MAY 2022 16:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.9)  12 JUN 2022 01:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -918,36 +918,65 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\Fahim Beck\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.c
 fg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) (report.bbl) 
-AED: lastpage setting LastPage
-<images/EPFL.png, id=33, 615.0478pt x 185.94469pt>
+)
+<images/EPFL.png, id=37, 615.0478pt x 185.94469pt>
 File: images/EPFL.png Graphic file (type png)
 <use images/EPFL.png>
-Package pdftex.def Info: images/EPFL.png  used on input line 125.
+Package pdftex.def Info: images/EPFL.png  used on input line 115.
 (pdftex.def)             Requested size: 68.28383pt x 20.64407pt.
-[1
+ [1
 
 {C:/Users/Fahim Beck/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./image
-s/EPFL.png>] (report.aux)
+s/EPFL.png>]
+<../Plots/PCA.pdf, id=50, 482.80376pt x 317.185pt>
+File: ../Plots/PCA.pdf Graphic file (type pdf)
+<use ../Plots/PCA.pdf>
+Package pdftex.def Info: ../Plots/PCA.pdf  used on input line 131.
+(pdftex.def)             Requested size: 364.19667pt x 239.27234pt.
+File: images/EPFL.png Graphic file (type png)
+<use images/EPFL.png>
+Package pdftex.def Info: images/EPFL.png  used on input line 141.
+(pdftex.def)             Requested size: 68.28383pt x 20.64407pt.
+ [2]
+File: images/EPFL.png Graphic file (type png)
+<use images/EPFL.png>
+Package pdftex.def Info: images/EPFL.png  used on input line 145.
+(pdftex.def)             Requested size: 68.28383pt x 20.64407pt.
+ [3 <../Plots/PCA.pdf>] (report.bbl)
+
+AED: lastpage setting LastPage
+File: images/EPFL.png Graphic file (type png)
+<use images/EPFL.png>
+Package pdftex.def Info: images/EPFL.png  used on input line 159.
+(pdftex.def)             Requested size: 68.28383pt x 20.64407pt.
+[4] (report.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 034645CAC62D37F16D5DEB7EBB92A9AE;1000.
+(rerunfilecheck)             Checksum: 03E9F03E76579910D9AAD303857C9713;1279.
  ) 
 Here is how much of TeX's memory you used:
- 18975 strings out of 478584
- 314146 string characters out of 2842006
- 684647 words of memory out of 3000000
- 36746 multiletter control sequences out of 15000+600000
- 483258 words of font info for 117 fonts, out of 8000000 for 9000
+ 19025 strings out of 478584
+ 314763 string characters out of 2842006
+ 683788 words of memory out of 3000000
+ 36764 multiletter control sequences out of 15000+600000
+ 484173 words of font info for 130 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,15n,77p,1005b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,15n,77p,1005b,461s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/Fahim Beck/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
 s/cm/cmbx12.pfb><C:/Users/Fahim Beck/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/amsfonts/cm/cmcsc10.pfb><C:/Users/Fahim Beck/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Fahim Beck/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on report.pdf (1 page, 74312 bytes).
+eX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Fahim Beck/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Fahim Beck/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users
+/Fahim Beck/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><C:/Users/Fahim Beck/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb><C:/Users/Fahim Beck/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmti12.pfb>
+Output written on report.pdf (4 pages, 208669 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
- 38974 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 121 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
+ 41035 words of extra memory for PDF output out of 42996 (max. 10000000)
 
